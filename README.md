@@ -8,7 +8,6 @@
 
 3D yazıcı ürünlerinizin maliyetini, satış fiyatını ve net kârını hesaplayan **Türkçe Windows uygulaması**.
 
-[Windows EXE dosyasını indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest/download/3D-Baski-Maliyet.exe) · [Web sürümünü aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/)
 
 ## İndir ve çalıştır — kurulum yok
 
@@ -48,9 +47,7 @@ Dosyayı masaüstüne taşıyıp sonraki kullanımlarda aynı EXE'ye çift tıkl
 
 Masaüstü kayıtları `%APPDATA%\3D-Baski-Maliyet-Hesaplayici` klasöründeki uygulama profiline kaydedilir. Ürünler, ayarlar ve tema yeniden açılışta korunur. Hiçbir ürün verisi sunucuya ya da GitHub'a gönderilmez. EXE dosyasını silmek bu profili otomatik silmez. Bu klasörü silmek kayıtlarınızı kaldırır.
 
-Web sürümü kayıtları kullanılan tarayıcının `localStorage` alanında tutulur. Masaüstü ve web kayıtları ayrı saklanır; otomatik olarak aktarılmaz veya eşitlenmez. Tarayıcı verilerini temizlemek web kayıtlarını siler.
-
-Masaüstü sürümü çevrimiçi font veya uzak sayfa yüklemez. Web sürümünün fontları Google Fonts'tan yüklenebilir; bağlantı yoksa sistem fontları kullanılır.
+Uygulama çevrimiçi font veya uzak sayfa yüklemez. Arayüz dosyaları EXE içerisinde bulunur. Eski tarayıcı sürümündeki kayıtlar masaüstü uygulamasına otomatik aktarılmaz.
 
 ## Hesaplama kuralları
 
@@ -81,17 +78,7 @@ npm ci
 npm start
 ```
 
-`npm start` masaüstü uygulamasını açar. Kaynak ZIP'ini çıkartan Windows kullanıcıları `Baslat.bat` dosyasını da kullanabilir. Son kullanıcılar için önerilen yöntem yukarıdaki doğrudan çalışan EXE'dir.
-
-### Web sürümü
-
-```sh
-npm run web
-```
-
-**http://localhost:4173** adresini açın. Yalnızca web sürümünü çalıştırmak için `node server.mjs` yeterlidir; paket kurulumu gerekmez. `docs/index.html` dosyasını doğrudan çift tıklamayın; JavaScript modülleri sunucu üzerinden yüklenmelidir.
-
-GitHub Pages ayarı: **Settings → Pages → Deploy from a branch → main → /docs**. [Resmi GitHub rehberi](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+`npm start` masaüstü uygulamasını açar. Bu komutlar geliştiriciler içindir. Kullanıcılar yukarıdaki EXE bağlantısından indirip çift tıklayarak açabilir.
 
 ### Tek dosyalık Windows EXE üretme
 
@@ -125,7 +112,7 @@ desktop/
   main.cjs          Masaüstü penceresi, yerel protokol ve veri profili
   smoke.cjs         Masaüstü etkileşim ve kalıcılık kontrolleri
 docs/
-  index.html        Ortak arayüz girişi
+  index.html        Masaüstü arayüz girişi
   style.css         Responsive tasarım, açık/koyu tema
   app.js            Ekranlar, yerel kayıt ve etkileşimler
   calc.mjs          Arayüzden bağımsız hesaplama motoru
@@ -133,10 +120,8 @@ build/
   icon.svg          Uygulama simgesi kaynağı
   icon.png          Simge önizlemesi
   icon.ico          Windows uygulama simgesi
-tests/              Hesaplama ve web sunucusu testleri
-server.mjs          İsteğe bağlı web sürümü sunucusu
-Baslat.bat          Kaynak kod için Windows başlatıcısı
+tests/              Hesaplama motoru testleri
 package.json        Komutlar ve taşınabilir EXE paketleme ayarları
 ```
 
-Masaüstü sürümü Electron ile çalışır. Renderer'da Node.js erişimi kapalıdır; context isolation ve sandbox açıktır. Yalnızca paketlenen yerel arayüz dosyaları yüklenir. Web ve masaüstü aynı hesaplama motorunu kullanır. İleride backend eklemek için `app.js` içindeki `repository` katmanı değiştirilebilir.
+Masaüstü sürümü Electron ile çalışır. Renderer'da Node.js erişimi kapalıdır; context isolation ve sandbox açıktır. Yalnızca paketlenen yerel arayüz dosyaları yüklenir. `docs/` klasörü masaüstü uygulamasının kullandığı arayüz kaynaklarını içerir. İleride backend eklemek için `app.js` içindeki `repository` katmanı değiştirilebilir.
