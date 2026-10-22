@@ -1,5 +1,6 @@
 const { app } = require('electron');
 const assert = require('node:assert/strict');
+const fs = require('node:fs/promises');
 const path = require('node:path');
 const { start } = require('./main.cjs');
 
@@ -15,6 +16,9 @@ async function run() {
       dark: document.body.classList.contains('dark')
     })`);
     assert.deepEqual(saved, { products: 1, machine: '8', dark: true });
+    if (process.env.BASKI_TEST_RESULT) {
+      await fs.writeFile(process.env.BASKI_TEST_RESULT, JSON.stringify({ passed: true, restart: true, saved }));
+    }
     console.log('Uygulama işlemi kapanıp yeniden açıldı: ürünler, maliyet ayarları ve tema korundu.');
     app.exit(0);
     return;
@@ -81,6 +85,9 @@ async function run() {
     dark: document.body.classList.contains('dark')
   })`);
   assert.deepEqual(persisted, { products: 1, machine: '8', dark: true });
+  if (process.env.BASKI_TEST_RESULT) {
+    await fs.writeFile(process.env.BASKI_TEST_RESULT, JSON.stringify({ passed: true, checks: first, persisted }));
+  }
   console.log(JSON.stringify({ passed: [...first, 'Yeniden yüklemede ürün, ayar ve tema korundu'] }));
   app.exit(0);
 }

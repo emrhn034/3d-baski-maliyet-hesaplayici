@@ -2,20 +2,20 @@
 
 3D yazıcı ürünlerinizin maliyetini, satış fiyatını ve net kârını hesaplayan **Türkçe Windows uygulaması**.
 
-[Windows kurulumunu indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest) · [Web sürümünü aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/)
+[Windows EXE dosyasını indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest/download/3D-Baski-Maliyet.exe) · [Web sürümünü aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/)
 
-## Windows'ta kurulum
+## İndir ve çalıştır — kurulum yok
 
-1. Yukarıdaki **Windows kurulumunu indir** bağlantısını açın.
-2. `3D-Baski-Maliyet-Kurulum-1.1.0.exe` dosyasını indirin.
-3. Dosyaya çift tıklayın. Uygulama kullanıcı hesabınıza kurulur ve açılır.
-4. Sonraki kullanımlarda masaüstündeki **3D Baskı Maliyet Hesaplayıcı** simgesine tıklayın.
+1. **[3D-Baski-Maliyet.exe dosyasını indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest/download/3D-Baski-Maliyet.exe).**
+2. İndirdiğiniz dosyaya **çift tıklayın**. Uygulama açılır.
 
-**Windows 10/11, 64 bit.** Node.js, terminal, tarayıcı veya ayrıca sunucu kurmanız gerekmez. Uygulama kendi penceresinde çalışır. İnternet bağlantısı olmadan maliyet hesaplayabilir ve kayıtlarınıza ulaşabilirsiniz.
+Hepsi bu. ZIP çıkartmak, kurulum yapmak, Node.js kurmak veya terminal kullanmak gerekmez. **Windows 10/11, 64 bit** içindir. Yönetici yetkisi istemez.
 
-Kaldırmak için Windows **Ayarlar → Uygulamalar** bölümünü kullanın. Güncellemelerde aynı kurulum dosyasının yeni sürümünü çalıştırın; ürün verileri uygulama klasöründen ayrı tutulur. Otomatik güncelleme bu sürümde yoktur.
+Dosyayı masaüstüne taşıyıp sonraki kullanımlarda aynı EXE'ye çift tıklayabilirsiniz. İnternet olmadan da çalışır. İlk açılış, program dosyaları geçici alana hazırlanırken birkaç saniye sürebilir; herhangi bir seçim yapmanız gerekmez.
 
-İlk dağıtımın kurulum dosyası dijital imzalı değildir. Kaynak kod ve SHA-256 doğrulama dosyası GitHub sürümünde bulunur.
+Ürün ve ayarlarınız EXE'nin yanında değil, kullanıcı profilinizde saklanır. EXE'yi taşımak veya yeni sürümüyle değiştirmek kayıtları silmez. Önceki kurulu sürümle aynı veri profili kullanılır. Otomatik güncelleme yoktur; güncellemek için uygulamayı kapatıp yeni EXE'yi indirin.
+
+İlk dağıtım dijital imzalı değildir. Kaynak kod ve SHA-256 doğrulama dosyası GitHub sürümünde bulunur.
 
 ## Neler yapar?
 
@@ -40,7 +40,7 @@ Kaldırmak için Windows **Ayarlar → Uygulamalar** bölümünü kullanın. Gü
 
 ## Veriler ve gizlilik
 
-Masaüstü kayıtları `%APPDATA%\3D-Baski-Maliyet-Hesaplayici` klasöründeki uygulama profiline kaydedilir. Ürünler, ayarlar ve tema yeniden açılışta korunur. Hiçbir ürün verisi sunucuya ya da GitHub'a gönderilmez. Kaldırma işlemi bu profili otomatik silmez. Bu klasörü silmek kayıtlarınızı kaldırır.
+Masaüstü kayıtları `%APPDATA%\3D-Baski-Maliyet-Hesaplayici` klasöründeki uygulama profiline kaydedilir. Ürünler, ayarlar ve tema yeniden açılışta korunur. Hiçbir ürün verisi sunucuya ya da GitHub'a gönderilmez. EXE dosyasını silmek bu profili otomatik silmez. Bu klasörü silmek kayıtlarınızı kaldırır.
 
 Web sürümü kayıtları kullanılan tarayıcının `localStorage` alanında tutulur. Masaüstü ve web kayıtları ayrı saklanır; otomatik olarak aktarılmaz veya eşitlenmez. Tarayıcı verilerini temizlemek web kayıtlarını siler.
 
@@ -75,7 +75,7 @@ npm ci
 npm start
 ```
 
-`npm start` masaüstü uygulamasını açar. Kaynak ZIP'ini çıkartan Windows kullanıcıları `Baslat.bat` dosyasını da kullanabilir. Son kullanıcılar için önerilen yöntem yukarıdaki kurulum EXE'sidir.
+`npm start` masaüstü uygulamasını açar. Kaynak ZIP'ini çıkartan Windows kullanıcıları `Baslat.bat` dosyasını da kullanabilir. Son kullanıcılar için önerilen yöntem yukarıdaki doğrudan çalışan EXE'dir.
 
 ### Web sürümü
 
@@ -87,7 +87,7 @@ npm run web
 
 GitHub Pages ayarı: **Settings → Pages → Deploy from a branch → main → /docs**. [Resmi GitHub rehberi](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
-### Windows kurulum dosyasını üretme
+### Tek dosyalık Windows EXE üretme
 
 Windows'ta:
 
@@ -97,7 +97,7 @@ npm test
 npm run build:win
 ```
 
-Kurulum dosyası `release/3D-Baski-Maliyet-Kurulum-1.1.0.exe` altında oluşur. `release` ve `node_modules` klasörleri Git'e eklenmez. Sürümler ve bağımlılıklar `package-lock.json` ile sabitlenir. Geliştirme araçları kurulum paketine eklenmez.
+Doğrudan çalışan taşınabilir dosya `release/3D-Baski-Maliyet.exe` altında oluşur. `release` ve `node_modules` klasörleri Git'e eklenmez. Sürümler ve bağımlılıklar `package-lock.json` ile sabitlenir. Geliştirme araçları uygulama paketine eklenmez.
 
 ### Masaüstü etkileşim testleri
 
@@ -126,11 +126,11 @@ docs/
 build/
   icon.svg          Uygulama simgesi kaynağı
   icon.png          Simge önizlemesi
-  icon.ico          Windows uygulama ve kurulum simgesi
+  icon.ico          Windows uygulama simgesi
 tests/              Hesaplama ve web sunucusu testleri
 server.mjs          İsteğe bağlı web sürümü sunucusu
 Baslat.bat          Kaynak kod için Windows başlatıcısı
-package.json        Komutlar ve Windows paketleme ayarları
+package.json        Komutlar ve taşınabilir EXE paketleme ayarları
 ```
 
 Masaüstü sürümü Electron ile çalışır. Renderer'da Node.js erişimi kapalıdır; context isolation ve sandbox açıktır. Yalnızca paketlenen yerel arayüz dosyaları yüklenir. Web ve masaüstü aynı hesaplama motorunu kullanır. İleride backend eklemek için `app.js` içindeki `repository` katmanı değiştirilebilir.

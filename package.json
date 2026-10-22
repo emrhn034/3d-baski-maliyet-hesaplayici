@@ -1,6 +1,6 @@
 {
   "name": "3d-baski-maliyet-hesaplayici",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "productName": "3D Baskı Maliyet Hesaplayıcı",
   "main": "desktop/main.cjs",
   "author": "emrhn034",
@@ -15,7 +15,7 @@
     "web": "node server.mjs",
     "test": "node --test tests/*.test.mjs",
     "test:desktop": "electron desktop/smoke.cjs",
-    "build:win": "electron-builder --win nsis --x64 --publish never"
+    "build:win": "electron-builder --win portable --x64 --publish never"
   },
   "devDependencies": {
     "electron": "45.0.0",
@@ -27,21 +27,13 @@
     "directories": { "output": "release", "buildResources": "build" },
     "files": ["docs/**/*", "desktop/main.cjs", "desktop/smoke.cjs", "build/icon.ico", "package.json"],
     "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "target": [{ "target": "portable", "arch": ["x64"] }],
       "icon": "build/icon.ico",
       "executableName": "3D-Baski-Maliyet"
     },
-    "nsis": {
-      "oneClick": true,
-      "perMachine": false,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "3D Baskı Maliyet Hesaplayıcı",
-      "deleteAppDataOnUninstall": false,
-      "runAfterFinish": true,
-      "installerLanguages": ["tr_TR"],
-      "language": "1055",
-      "artifactName": "3D-Baski-Maliyet-Kurulum-${version}.${ext}"
+    "portable": {
+      "requestExecutionLevel": "user",
+      "artifactName": "3D-Baski-Maliyet.exe"
     }
   }
 }
