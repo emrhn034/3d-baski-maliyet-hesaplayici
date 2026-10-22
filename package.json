@@ -1,0 +1,12 @@
+{
+  "name": "3d-baski-maliyet-hesaplayici",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Türkçe 3D baskı maliyet, kâr ve satış fiyatı hesaplayıcı",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test"
+  }
+}
