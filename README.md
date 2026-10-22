@@ -1,5 +1,11 @@
 # 3D Baskı Maliyet Hesaplayıcı
 
+**Güncel sürüm: [v1.2.0 — Kurulumsuz Windows uygulaması](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/tag/v1.2.0)**
+
+## [UYGULAMAYI İNDİR — 3D-Baski-Maliyet.exe](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest/download/3D-Baski-Maliyet.exe)
+
+**İndir → Çift tıkla → Kullan.** Kurulum, ZIP çıkartma ve Node.js gerekmez.
+
 3D yazıcı ürünlerinizin maliyetini, satış fiyatını ve net kârını hesaplayan **Türkçe Windows uygulaması**.
 
 [Windows EXE dosyasını indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest/download/3D-Baski-Maliyet.exe) · [Web sürümünü aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/)
