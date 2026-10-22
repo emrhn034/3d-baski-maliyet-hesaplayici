@@ -1,5 +1,7 @@
 # 3D Baskı Maliyet Hesaplayıcı
 
+[Uygulamayı aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/) · [ZIP olarak indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/archive/refs/heads/main.zip)
+
 3D yazıcıyla ürettiğiniz ürünlerin maliyetini, satış fiyatını ve net kârını hesaplayan Türkçe uygulama.
 
 **Filament fiyatı + kullanılan gram + baskı süresi → maliyet ve satış fiyatı.**
@@ -17,7 +19,15 @@ Komut penceresi açık kalsın. Uygulamayı durdurmak için pencerede **Ctrl+C**
 
 ## Terminal ile kurulum — Windows / macOS / Linux
 
-Node.js 22 veya üzeri kurulu olmalıdır. Proje klasöründe:
+Node.js 22 veya üzeri kurulu olmalıdır. Git ile indirmek ve başlatmak için:
+
+```sh
+git clone https://github.com/emrhn034/3d-baski-maliyet-hesaplayici.git
+cd 3d-baski-maliyet-hesaplayici
+npm start
+```
+
+ZIP'i zaten çıkarttıysanız proje klasöründe yalnızca:
 
 ```sh
 npm start
