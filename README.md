@@ -1,148 +1,136 @@
 # 3D Baskı Maliyet Hesaplayıcı
 
-[Uygulamayı aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/) · [ZIP olarak indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/archive/refs/heads/main.zip)
+3D yazıcı ürünlerinizin maliyetini, satış fiyatını ve net kârını hesaplayan **Türkçe Windows uygulaması**.
 
-3D yazıcıyla ürettiğiniz ürünlerin maliyetini, satış fiyatını ve net kârını hesaplayan Türkçe uygulama.
+[Windows kurulumunu indir](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest) · [Web sürümünü aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/)
 
-**Filament fiyatı + kullanılan gram + baskı süresi → maliyet ve satış fiyatı.**
+## Windows'ta kurulum
 
-HTML, CSS ve JavaScript ile hazırlanmıştır. Veritabanı, üyelik, API anahtarı veya derleme gerektirmez. Ek paket bağımlılığı yoktur.
+1. Yukarıdaki **Windows kurulumunu indir** bağlantısını açın.
+2. `3D-Baski-Maliyet-Kurulum-1.1.0.exe` dosyasını indirin.
+3. Dosyaya çift tıklayın. Uygulama kullanıcı hesabınıza kurulur ve açılır.
+4. Sonraki kullanımlarda masaüstündeki **3D Baskı Maliyet Hesaplayıcı** simgesine tıklayın.
 
-## En kolay kurulum — Windows
+**Windows 10/11, 64 bit.** Node.js, terminal, tarayıcı veya ayrıca sunucu kurmanız gerekmez. Uygulama kendi penceresinde çalışır. İnternet bağlantısı olmadan maliyet hesaplayabilir ve kayıtlarınıza ulaşabilirsiniz.
 
-1. [Node.js](https://nodejs.org/) güncel **LTS** sürümünü kurun (Node.js 22 veya üzeri).
-2. GitHub sayfasında **Code → Download ZIP** ile projeyi indirin ve ZIP'i bir klasöre çıkartın.
-3. Klasördeki **Baslat.bat** dosyasına çift tıklayın.
-4. Uygulama tarayıcıda açılır: **http://localhost:4173**
+Kaldırmak için Windows **Ayarlar → Uygulamalar** bölümünü kullanın. Güncellemelerde aynı kurulum dosyasının yeni sürümünü çalıştırın; ürün verileri uygulama klasöründen ayrı tutulur. Otomatik güncelleme bu sürümde yoktur.
 
-Komut penceresi açık kalsın. Uygulamayı durdurmak için pencerede **Ctrl+C** tuşlarına basın. Tekrar kullanmak için aynı dosyayı açmanız yeterlidir.
+İlk dağıtımın kurulum dosyası dijital imzalı değildir. Kaynak kod ve SHA-256 doğrulama dosyası GitHub sürümünde bulunur.
 
-## Terminal ile kurulum — Windows / macOS / Linux
+## Neler yapar?
 
-Node.js 22 veya üzeri kurulu olmalıdır. Git ile indirmek ve başlatmak için:
+- Filament fiyatı, gram ve baskı süresinden anlık üretim maliyeti
+- İsteğe bağlı elektrik ve makine kullanım maliyeti
+- Kaydedilebilir maliyet ayarları ve varsayılan oranlar
+- Birden çok ek maliyet ve fire payı
+- Kâr oranı, hızlı satış fiyatı kartları ve komisyon hesabı
+- Komisyon sonrasında hedef kârı koruma
+- Ürün kaydetme, arama, düzenleme, kopyalama, silme ve tekrar hesaplama
+- Ürün sayısı, filament kullanımı, maliyet ve tahmini kâr istatistikleri
+- Açık/koyu tema ve Türkçe sayı biçimleri
+
+## Kullanım
+
+1. **Ayarlar** bölümünde maliyet değerlerinizi girin ve kaydedin.
+2. **Yeni Hesaplama** bölümünde ürün adı, filament fiyatı, kullanılan gram ve baskı süresini girin.
+3. Kâr oranını seçin. Sonuçlar anında güncellenir.
+4. **Ürünü Kaydet** düğmesiyle saklayın; **Ürünlerim** bölümünden tekrar açın.
+
+Örnek: `560 TL/kg ÷ 1000 × 91,4 gram = 51,184 TL`; filament maliyeti ekranda **51,18 TL** görünür.
+
+## Veriler ve gizlilik
+
+Masaüstü kayıtları `%APPDATA%\3D-Baski-Maliyet-Hesaplayici` klasöründeki uygulama profiline kaydedilir. Ürünler, ayarlar ve tema yeniden açılışta korunur. Hiçbir ürün verisi sunucuya ya da GitHub'a gönderilmez. Kaldırma işlemi bu profili otomatik silmez. Bu klasörü silmek kayıtlarınızı kaldırır.
+
+Web sürümü kayıtları kullanılan tarayıcının `localStorage` alanında tutulur. Masaüstü ve web kayıtları ayrı saklanır; otomatik olarak aktarılmaz veya eşitlenmez. Tarayıcı verilerini temizlemek web kayıtlarını siler.
+
+Masaüstü sürümü çevrimiçi font veya uzak sayfa yüklemez. Web sürümünün fontları Google Fonts'tan yüklenebilir; bağlantı yoksa sistem fontları kullanılır.
+
+## Hesaplama kuralları
+
+| Kalem | Hesap |
+| --- | --- |
+| Filament | `(TL/kg ÷ 1000) × gram` |
+| Baskı süresi | `saat + dakika ÷ 60` |
+| Elektrik | `(Watt ÷ 1000) × süre × TL/kWh` |
+| Makine | `süre × TL/saat` |
+| Fire | `(filament + elektrik + makine) × fire yüzdesi ÷ 100` |
+| Üretim maliyeti | `filament + elektrik + makine + fire + ek maliyetler` |
+| Hedef kâr | `üretim maliyeti × kâr yüzdesi ÷ 100` |
+| Normal satış fiyatı | `üretim maliyeti + hedef kâr` |
+| Komisyon sonrası kâr koruma | `(üretim maliyeti + hedef kâr) ÷ (1 − komisyon / 100)` |
+| Net kazanç | `satış fiyatı − komisyon` |
+| Net kâr | `satış fiyatı − komisyon − üretim maliyeti` |
+
+Kâr oranı maliyet üzerine eklenen oranı ifade eder. Vergiler ayrıca hesaplanmaz. Para hesapları `BigInt` ile TL'nin milyonda biri hassasiyetinde yapılır; ekran iki ondalık basamak gösterir. Ara kalemlerdeki yuvarlama nedeniyle kuruş farkları görülebilir.
+
+## Kaynak koddan çalıştırma — geliştiriciler için
+
+[Node.js LTS](https://nodejs.org/) (22 veya üzeri) ve Git kurulu olmalıdır.
 
 ```sh
 git clone https://github.com/emrhn034/3d-baski-maliyet-hesaplayici.git
 cd 3d-baski-maliyet-hesaplayici
+npm ci
 npm start
 ```
 
-ZIP'i zaten çıkarttıysanız proje klasöründe yalnızca:
+`npm start` masaüstü uygulamasını açar. Kaynak ZIP'ini çıkartan Windows kullanıcıları `Baslat.bat` dosyasını da kullanabilir. Son kullanıcılar için önerilen yöntem yukarıdaki kurulum EXE'sidir.
+
+### Web sürümü
 
 ```sh
-npm start
+npm run web
 ```
 
-Ardından **http://localhost:4173** adresini açın. **`npm install` çalıştırmanız gerekmez.** İsterseniz aynı uygulamayı `node server.mjs` ile de başlatabilirsiniz.
+**http://localhost:4173** adresini açın. Yalnızca web sürümünü çalıştırmak için `node server.mjs` yeterlidir; paket kurulumu gerekmez. `docs/index.html` dosyasını doğrudan çift tıklamayın; JavaScript modülleri sunucu üzerinden yüklenmelidir.
 
-> `docs/index.html` dosyasına doğrudan çift tıklamak yerine yerel sunucuyu kullanın; uygulama JavaScript modülleri kullanır.
+GitHub Pages ayarı: **Settings → Pages → Deploy from a branch → main → /docs**. [Resmi GitHub rehberi](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
-## GitHub'da paylaşma
+### Windows kurulum dosyasını üretme
 
-1. GitHub'da yeni bir depo oluşturun. Önerilen ad: `3d-baski-maliyet-hesaplayici`.
-2. **Add file → Upload files** üzerinden bu klasörün **içindeki dosya ve klasörleri** yükleyin. ZIP dosyasının kendisini yüklemeyin.
-3. Deponun kökünde `README.md`, `package.json`, `server.mjs`, `Baslat.bat` ve `docs` klasörü bulunmalı.
-4. Dosyaları kaydetmek için **Commit changes** seçeneğini kullanın.
-
-Git kullanıyorsanız oluşturduğunuz boş deponun adresiyle:
+Windows'ta:
 
 ```sh
-git init
-git add .
-git commit -m "İlk sürüm: 3D baskı maliyet hesaplayıcı"
-git branch -M main
-git remote add origin https://github.com/KULLANICI_ADINIZ/DEPO_ADINIZ.git
-git push -u origin main
-```
-
-## GitHub Pages ile internette yayınlama
-
-Ziyaretçilerin uygulamayı kullanmak için Node.js kurmasına gerek yoktur.
-
-1. Projeyi GitHub'a yükleyin.
-2. Depoda **Settings → Pages** sayfasını açın.
-3. **Build and deployment → Source** alanında **Deploy from a branch** seçin.
-4. Dal olarak **main**, klasör olarak **/docs** seçip **Save** düğmesine basın.
-5. Yayın tamamlandığında Pages sayfasındaki bağlantıyı açın.
-
-Adresiniz genellikle `https://KULLANICI_ADINIZ.github.io/DEPO_ADINIZ/` şeklinde olur. Göreli dosya yolları sayesinde depo altındaki yayın desteklenir. Ayrıntılar: [GitHub Pages resmi kurulum rehberi](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
-
-## Kullanım
-
-1. **Ayarlar** bölümünde filament alış fiyatı, elektrik birim fiyatı, yazıcı gücü, makine saatlik maliyeti ve varsayılan oranları girip **Maliyet Ayarlarını Kaydet** düğmesine basın.
-2. **Yeni Hesaplama** bölümünde ürün adını, kullanılan filament gramını ve baskı süresini girin.
-3. İsterseniz ek maliyet ekleyin; fire, kâr ve komisyon oranlarını belirleyin.
-4. Sonuç kartı anında güncellenir. **Ürünü Kaydet** ile hesabı saklayın.
-5. **Ürünlerim** bölümünde arama, düzenleme, kopyalama, silme ve güncel ayarlarla tekrar hesaplama yapın.
-
-Elektrik ve makine maliyetleri ayrı ayrı kapatılabilir. Hızlı kâr kartlarına tıklayarak satış fiyatını karşılaştırabilirsiniz. Açık ve koyu tema desteklenir.
-
-## Hesaplama kuralları
-
-- **Filament:** `(TL/kg ÷ 1000) × gram`
-- **Elektrik:** `(Watt ÷ 1000) × (saat + dakika ÷ 60) × TL/kWh`
-- **Makine:** `(saat + dakika ÷ 60) × TL/saat`
-- **Fire:** `(filament + elektrik + makine) × fire yüzdesi ÷ 100`
-- **Üretim maliyeti:** `filament + elektrik + makine + fire + ek maliyetler`
-- **Hedef kâr:** `üretim maliyeti × kâr yüzdesi ÷ 100`
-- **Normal satış fiyatı:** `üretim maliyeti + hedef kâr`
-- **Komisyon sonrası kâr koruma açıkken:** `(üretim maliyeti + hedef kâr) ÷ (1 − komisyon yüzdesi ÷ 100)`
-- **Komisyon:** `satış fiyatı × komisyon yüzdesi ÷ 100`
-- **Net kazanç:** `satış fiyatı − komisyon`
-- **Net kâr:** `net kazanç − üretim maliyeti`
-
-Kâr oranı, maliyet üzerine eklenen oranı ifade eder. Vergiler ve ayrıca tanımlanmayan giderler hesaplanmaz. Ara para hesapları `BigInt` tamsayılarla, TL'nin milyonda biri hassasiyetinde yapılır; ekranda tutarlar iki ondalık basamakla gösterilir. Görüntülenen kalemlerin yuvarlanması nedeniyle kuruş farkları görülebilir.
-
-### Örnek
-
-560 TL/kg fiyatla 91,4 gram filament:
-
-```text
-560 / 1000 × 91,4 = 51,184 TL
-Ekranda: 51,18 TL
-```
-
-Yalnızca filament maliyetini görmek için elektrik ve makine maliyetini kapatın, fireyi ve ek maliyetleri sıfırlayın.
-
-## Veriler nerede saklanıyor?
-
-Ürünler, ayarlar ve tema `localStorage` içinde, kullanılan tarayıcı ve adres için saklanır. Sunucuya veya GitHub'a ürün verisi gönderilmez. Kayıtlar cihazlar arasında eşitlenmez. Tarayıcı verilerini temizlemek kayıtları siler; gizli oturumdaki kayıtlar oturum kapanınca kaybolabilir.
-
-Yerel adres, GitHub Pages adresi ve önceki Sites yayını farklı depolama alanları kullanır. Aynı kayıtları görmek için aynı tarayıcı ve adresi kullanın. `localhost` ile `127.0.0.1` de farklı adreslerdir. GitHub Pages üzerinde bir adresi açan herkes kendi tarayıcısındaki kayıtları görür.
-
-Arayüz fontları Google Fonts üzerinden yüklenir. İnternet bağlantısı yoksa sistem fontları kullanılır; yerel maliyet hesaplama çalışmaya devam eder.
-
-## Proje yapısı
-
-```text
-docs/
-  index.html       Sayfa girişi
-  style.css        Responsive tasarım, açık/koyu tema
-  app.js           Ekranlar, yerel kayıt ve etkileşimler
-  calc.mjs         Arayüzden bağımsız hesaplama motoru
-  .nojekyll        GitHub Pages için statik yayın işareti
-tests/
-  calc.test.mjs    Maliyet, komisyon ve doğrulama testleri
-  server.test.mjs  Yerel sunucu kontrolleri
-server.mjs         Bağımlılıksız yerel sunucu
-Baslat.bat         Windows için çift tıklayarak başlatma
-package.json       Başlatma ve test komutları
-```
-
-İleride backend eklemek için `app.js` içindeki `repository` nesnesi API tabanlı bir veri katmanıyla değiştirilebilir. Hesaplama motoru `calc.mjs` içinde ayrı tutulur. Bu pakette Sites kimliği, erişim anahtarı ve özel depo bilgisi bulunmaz.
-
-## Testler
-
-```sh
+npm ci
 npm test
+npm run build:win
 ```
 
-Hesaplama ve yerel sunucu testlerini çalıştırır. Görsel tarayıcı kontrolleri ayrıca yapılmalıdır.
+Kurulum dosyası `release/3D-Baski-Maliyet-Kurulum-1.1.0.exe` altında oluşur. `release` ve `node_modules` klasörleri Git'e eklenmez. Sürümler ve bağımlılıklar `package-lock.json` ile sabitlenir. Geliştirme araçları kurulum paketine eklenmez.
 
-## Sık karşılaşılan durumlar
+### Masaüstü etkileşim testleri
 
-- **Node.js bulunamadı:** Node.js LTS kurulumundan sonra terminali kapatıp yeniden açın.
-- **4173 portu kullanımda:** Önceden açtığınız uygulama penceresini kapatın. İkinci bir sunucu yerine mevcut `http://localhost:4173` adresini kullanabilirsiniz.
-- **Ayarlar yeni ürüne gelmedi:** Ayarları kaydedin, ardından **Ürünlerim → Yeni Hesaplama** ile yeni bir hesap açın.
-- **Eski ürünün fiyatı değişmedi:** Kayıtlı hesap geçmiş haliyle saklanır. **Tekrar Hesapla** ile güncel ayarları uygulayıp yeniden kaydedin.
-- **Pages adresinde 404:** Pages ayarının `main /docs` olduğundan ve `docs/index.html` dosyasının yüklendiğinden emin olun.
+PowerShell'de, yalnızca test için ayrılmış boş bir profil yolu belirleyin:
+
+```powershell
+$env:BASKI_TEST_PROFILE = Join-Path $env:TEMP ('baski-test-' + [Guid]::NewGuid())
+npm run test:desktop
+$env:BASKI_SMOKE_RESTART = '1'
+npm run test:desktop
+```
+
+Hesaplama, ürün işlemleri, ayarlar, tema, stil yükleme ve uygulama işlemi yeniden açıldığında veri kalıcılığı doğrulanır. Test profili normal kayıtlardan ayrıdır. Yeni test turunda yeni bir profil yolu kullanın ve `BASKI_SMOKE_RESTART` değişkenini kaldırın.
+
+## Kod yapısı
+
+```text
+desktop/
+  main.cjs          Masaüstü penceresi, yerel protokol ve veri profili
+  smoke.cjs         Masaüstü etkileşim ve kalıcılık kontrolleri
+docs/
+  index.html        Ortak arayüz girişi
+  style.css         Responsive tasarım, açık/koyu tema
+  app.js            Ekranlar, yerel kayıt ve etkileşimler
+  calc.mjs          Arayüzden bağımsız hesaplama motoru
+build/
+  icon.svg          Uygulama simgesi kaynağı
+  icon.png          Simge önizlemesi
+  icon.ico          Windows uygulama ve kurulum simgesi
+tests/              Hesaplama ve web sunucusu testleri
+server.mjs          İsteğe bağlı web sürümü sunucusu
+Baslat.bat          Kaynak kod için Windows başlatıcısı
+package.json        Komutlar ve Windows paketleme ayarları
+```
+
+Masaüstü sürümü Electron ile çalışır. Renderer'da Node.js erişimi kapalıdır; context isolation ve sandbox açıktır. Yalnızca paketlenen yerel arayüz dosyaları yüklenir. Web ve masaüstü aynı hesaplama motorunu kullanır. İleride backend eklemek için `app.js` içindeki `repository` katmanı değiştirilebilir.
