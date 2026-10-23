@@ -2,11 +2,11 @@
 
 3D yazıcı ürünlerinizin maliyetini, satış fiyatını ve net kârını hesaplayan **Türkçe Windows uygulaması**.
 
-[Web sürümünü aç](https://emrhn034.github.io/3d-baski-maliyet-hesaplayici/)
+**Windows kurulumu:** [Releases → Assets bölümünü aç](https://github.com/emrhn034/3d-baski-maliyet-hesaplayici/releases/latest)
 
 ## Windows kurulumu
 
-GitHub Releases sayfasının **Assets** bölümünden `3D-Baski-Maliyet-Setup-1.2.0.exe` dosyasını indirin.
+Yukarıdaki Releases bağlantısını açıp **Assets** bölümünü genişletin. Buradan `3D-Baski-Maliyet-Setup-1.2.0.exe` dosyasını indirin.
 
 1. Setup dosyasına çift tıklayın.
 2. Türkçe kurulum ekranında ilerleyip kurulumu başlatın. Klasör veya kullanıcı türü seçmeniz gerekmez.
@@ -47,7 +47,7 @@ Dağıtım için Setup dosyasını ilgili GitHub Release'in **Assets** bölümü
 ## Depo yapısı
 
 - `desktop/`: Windows uygulamasının başlangıcı ve masaüstü kontrolleri.
-- `docs/`: Uygulamanın kullandığı arayüz ve hesaplama motoru; web önizlemesi de bu dosyaları kullanır.
+- `docs/`: Windows uygulamasının kullandığı yerel arayüz ve hesaplama motoru.
 - `build/`: Windows simgesi, simgenin SVG kaynağı ve NSIS kurulum ayarları.
 - `tests/`: Hesaplama doğrulama testleri.
 - `package.json` ve `package-lock.json`: Çalıştırma komutları, paketleme ayarları ve sabitlenmiş bağımlılıklar.
