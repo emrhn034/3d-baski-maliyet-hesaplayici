@@ -43,3 +43,13 @@ npm run build:win
 NSIS Setup dosyası `release/3D-Baski-Maliyet-Setup-${version}.exe` olarak oluşturulur. Sürüm `package.json` içindeki `version` değerinden alınır. `npm start` masaüstü uygulamasını geliştirme ortamında açar.
 
 Dağıtım için Setup dosyasını ilgili GitHub Release'in **Assets** bölümüne yükleyin. Build komutu otomatik yayın yapmaz. `release/win-unpacked` test içindir; dağıtılacak dosya Setup EXE'sidir.
+
+## Depo yapısı
+
+- `desktop/`: Windows uygulamasının başlangıcı ve masaüstü kontrolleri.
+- `docs/`: Uygulamanın kullandığı arayüz ve hesaplama motoru; web önizlemesi de bu dosyaları kullanır.
+- `build/`: Windows simgesi, simgenin SVG kaynağı ve NSIS kurulum ayarları.
+- `tests/`: Hesaplama doğrulama testleri.
+- `package.json` ve `package-lock.json`: Çalıştırma komutları, paketleme ayarları ve sabitlenmiş bağımlılıklar.
+
+Derleme çıktıları `release/` altında oluşur ve kaynak depoya eklenmez. Windows dağıtımı için sürümün Assets bölümünde Setup dosyası ve ona ait `.sha256` doğrulama dosyası bulunur.
